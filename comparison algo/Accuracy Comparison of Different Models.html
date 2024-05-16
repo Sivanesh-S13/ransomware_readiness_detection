@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Accuracies</title>
+    <!-- Load required libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h2>Accuracy Comparison of Different Models</h2>
+        <canvas id="accuracyChart" width="800" height="400"></canvas>
+    </div>
+
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Accuracy</th>
+        </tr>
+        <tr>
+            <td>LR</td>
+            <td>0.955480</td>
+        </tr>
+        <tr>
+            <td>DTC</td>
+            <td>0.992252</td>
+        </tr>
+        <tr>
+            <td>KNN</td>
+            <td>0.967555</td>
+        </tr>
+        <tr>
+            <td>RF</td>
+            <td>0.995280</td>
+        </tr>
+    </table>
+
+    <script>
+        // Data
+        var modelNames = ["LR", "DTC", "KNN", "RF"];
+        var accuracies = [0.955480, 0.992252, 0.967555, 0.995280];
+
+        // Create chart
+        var ctx = document.getElementById('accuracyChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: modelNames,
+                datasets: [{
+                    label: 'Accuracy',
+                    data: accuracies,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 1
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
